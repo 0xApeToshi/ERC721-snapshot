@@ -14,7 +14,7 @@ However, I'm feeling a bit lazy so I'll show how to install packages globally
 pip install -r requirements.txt
 ```
 
-Add a `.env` file with the `INFURA_ID` API key.
+Add a `.env` file with the `INFURA_ID="<your_key>"` line.
 In the `main.py` file change the `CONTRACT_ADDR`, `START` and `END` variables.
 
 Finally, run it with:
