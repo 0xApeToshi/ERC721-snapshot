@@ -70,7 +70,6 @@ if __name__ == "__main__":
 
     eta = "?"
     animation = "|/-\\"
-    print("Running...")
     for i, tokenId in enumerate(range(START, END+1)):
         t1 = time()
 
