@@ -1,5 +1,5 @@
 # Creator: Ape Toshi
-# Last edited: February 13th, 2022
+# Last edited: February 14th, 2022
 # License: MIT
 
 import json
@@ -67,31 +67,31 @@ if __name__ == "__main__":
 
     snapshot = {}
     window = QueueWindow(10)
-    n = 0
+
     eta = "?"
     animation = "|/-\\"
-    for i in range(START, END+1):
-        n += 1
+    print("Running...")
+    for i, tokenId in enumerate(range(START, END+1)):
         t1 = time()
 
-        wallet_owner = contract.functions.ownerOf(i).call()
+        wallet_owner = contract.functions.ownerOf(tokenId).call()
         if snapshot.get(wallet_owner):
             # If the wallet owns multiple tokens
-            snapshot[wallet_owner].append(i)
+            snapshot[wallet_owner].append(tokenId)
         else:
             # If the wallet appears for the first time,
             # make a list and add the found token to it
-            snapshot.update({wallet_owner: [i]})
+            snapshot.update({wallet_owner: [tokenId]})
         t2 = time()
         window.add(t2-t1)
-        remaining = TOTAL - n
+        remaining = TOTAL - i
         # Find the average time and multiply by remaining
 
-        if n % 10 == 0:
+        if i % 10 == 0:
             eta = round(remaining * window.get_sum()/window.get_len(), 1)
 
         print(
-            f"{animation[n % len(animation)]} {i}/{END} | ETA: {eta}s", end="\r")
+            f"{animation[i % len(animation)]} {tokenId}/{END} | ETA: {eta}s", end="\r")
 
     print("--> Saving to snapshot.txt")
     with open("snapshot.txt", "w") as f:
