@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     # Start & end tokenId (inclusive)
     START = 1
-    END = 100
+    END = 15
 
     TOTAL = END - START + 1
 
@@ -55,14 +55,12 @@ if __name__ == "__main__":
 
     # Needs a .env file in the same folder
     INFURA_ID = os.getenv("INFURA_ID")
-    ETHERSCAN_TOKEN = os.getenv("ETHERSCAN_TOKEN")
 
-    url = f"https://api.etherscan.io/api?module=contract&action=getabi&address={CONTRACT_ADDR}&apikey={ETHERSCAN_TOKEN}"
+    url = f"https://api.etherscan.io/api?module=contract&action=getabi&address={CONTRACT_ADDR}"
 
     w3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_ID}"))
 
     response = requests.get(url)
-
     ABI = json.loads(response.json().get("result"))
 
     contract = w3.eth.contract(w3.toChecksumAddress(CONTRACT_ADDR), abi=ABI)
