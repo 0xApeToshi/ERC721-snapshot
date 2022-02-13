@@ -97,5 +97,5 @@ if __name__ == "__main__":
 
     print("--> Saving to snapshot.txt")
     with open("snapshot.txt", "w") as f:
-        f.write(json.dumps(snapshot, indent=4))
+        f.write(json.dumps(snapshot))
     print("--> Done!")
