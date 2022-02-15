@@ -90,7 +90,7 @@ if __name__ == "__main__":
             eta = round(remaining * window.get_sum()/window.get_len(), 1)
 
         print(
-            f"{animation[i % len(animation)]} {tokenId}/{END} | ETA: {eta:9.2f}s", end="\r")
+            f"{animation[i % len(animation)]} {tokenId:5}/{END} | ETA: {eta:9.2f}s", end="\r")
 
     print("--> Saving to snapshot.txt")
     with open("snapshot.txt", "w") as f:
