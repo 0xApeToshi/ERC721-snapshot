@@ -83,14 +83,14 @@ if __name__ == "__main__":
             snapshot.update({wallet_owner: [tokenId]})
         t2 = time()
         window.add(t2-t1)
-        remaining = TOTAL - i
+        remaining = TOTAL - i - 1
         # Find the average time and multiply by remaining
 
         if i % 10 == 0:
             eta = round(remaining * window.get_sum()/window.get_len(), 1)
 
         print(
-            f"{animation[i % len(animation)]} {tokenId}/{END} | ETA: {eta}s", end="\r")
+            f"{animation[i % len(animation)]} {tokenId}/{END} | ETA: {eta:9.2f}s", end="\r")
 
     print("--> Saving to snapshot.txt")
     with open("snapshot.txt", "w") as f:
