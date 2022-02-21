@@ -11,7 +11,7 @@ It's always a good idea to have a separate environment for each project.
 However, I'm feeling a bit lazy so I'll show how to install packages globally
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Add a `.env` file with the `INFURA_ID="<your_key>"` line.
@@ -20,5 +20,5 @@ In the `main.py` file change the `CONTRACT_ADDR`, `START` and `END` variables.
 Finally, run it with:
 
 ```bash
-python main.py
+python3 main.py
 ```
