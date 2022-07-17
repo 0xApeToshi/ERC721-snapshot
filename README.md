@@ -1,7 +1,7 @@
 # ERC721-snapshot
 Make a snapshot of the current ERC721 token holders distribution.
 
-![Demo gif](https://github.com/0xApeToshi/ERC721-snapshot/blob/main/demo.gif)
+![Example image](https://github.com/0xApeToshi/ERC721-snapshot/blob/multicall/example.png)
 
 # Requirements
 Python >=3.7.0
@@ -14,11 +14,16 @@ However, I'm feeling a bit lazy so I'll show how to install packages globally
 pip3 install -r requirements.txt
 ```
 
-Add a `.env` file with the `INFURA_ID="<your_key>"` line.
-In the `main.py` file change the `CONTRACT_ADDR`, `START` and `END` variables.
+You can add a `.env` file with the `INFURA_ID="<your_key>"` instead of inputting it every time.
 
-Finally, run it with:
+Run it either in interactive mode with
 
 ```bash
-python3 main.py
+python3 snapshot.py
+```
+
+or parse command line args:
+
+```bash
+python3 snapshot.py -c 0xc36cb218848f173148ff55f4dfc18f1540fb7475 -f 1 -l 200
 ```
