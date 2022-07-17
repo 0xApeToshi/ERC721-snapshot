@@ -1,6 +1,8 @@
 # ERC721-snapshot
 Make a snapshot of the current ERC721 token holders distribution.
 
+![Example image](https://github.com/0xApeToshi/ERC721-snapshot/blob/multicall/example.png)
+
 # Requirements
 Python >=3.7.0
 
