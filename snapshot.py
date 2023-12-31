@@ -1,5 +1,5 @@
 # Creator: Ape Toshi
-# Last edited: July 17th, 2022
+# Last edited: December 31st, 2023
 # License: MIT
 
 import argparse
@@ -12,6 +12,9 @@ from web3 import Web3
 if __name__ == "__main__":
     load_dotenv()
 
+    with open("abi.json") as f:
+        ABI = json.loads(f.read())
+
     parser = argparse.ArgumentParser(
         description="Create ERC-721 ownership snapshot.")
 
@@ -23,34 +26,19 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    INFURA_ID = args.key
-    if not INFURA_ID:
-        INFURA_ID = os.getenv("INFURA_ID")
-        if not INFURA_ID:
-            INFURA_ID = input("Infura API key: ")
-
-    CONTRACT_ADDR = args.contract
-
-    if not CONTRACT_ADDR:
-        CONTRACT_ADDR = input("Ethereum smart contract address: ")
-
-    # Start & end tokenId (inclusive)
-    START = args.first
-    if not START:
-        START = int(input("First `tokenId`: "))
-    END = args.last
-    if not END:
-        END = int(input("Last `tokenId`: "))
-
-    with open("abi.json") as f:
-        ABI = json.loads(f.read())
+    INFURA_ID = args.key if args.key else os.getenv(
+        "INFURA_ID") if os.getenv("INFURA_ID") else input("Infura API key: ")
+    CONTRACT_ADDR = args.contract if args.contract else input(
+        "Ethereum smart contract address: ")
+    START = args.first if args.first else int(input("First `tokenId`: "))
+    END = args.last if args.last else int(input("Last `tokenId`: "))
 
     w3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_ID}"))
 
-    multicall = w3.eth.contract(w3.toChecksumAddress(
+    multicall = w3.eth.contract(w3.to_checksum_address(
         "0x01e035926a4e5ae088dbb764a1f607510798cea8"), abi=ABI)
 
-    collection = w3.toChecksumAddress(CONTRACT_ADDR)
+    collection = w3.to_checksum_address(CONTRACT_ADDR)
 
     response = multicall.functions.getOwners(collection, START, END).call()
 

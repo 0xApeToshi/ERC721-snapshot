@@ -4,7 +4,7 @@ Make a snapshot of the current ERC721 token holders distribution.
 ![Example image](https://github.com/0xApeToshi/ERC721-snapshot/blob/main/example.png)
 
 # Requirements
-Python >=3.7.0
+Python >=3.9.0
 
 # Setup
 It's always a good idea to have a separate environment for each project.
